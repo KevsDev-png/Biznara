@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Inversionista</title>
+    <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/Registroinver.css') }}">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <div class="parte-titulo">
+           <img src="{{ url_for('static', filename='Img/icono-inversionista.png') }}" alt="Inversionista" class="iconos">
+            <h1>CREA TU CUENTA DE INVERSIONISTA</h1>
+        </div>
+        <p class="subtitulo">Ya casi eres parte del clúster. Solo necesitamos algunos datos.</p>
+
+        <form id="investorForm" action="{{ url_for('registro_inversionista') }}" method="POST">
+            <!-- Información Personal -->
+            <div class="sector">
+                <h2 class="sector-titulo">Información Personal <i class="fa-solid fa-user-tie"></i></h2>
+                
+                <div class="form-row">
+                    <div>
+                        <label for="nombreCompleto">Nombre Completo</label>
+                        <input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Nombre Completo" required maxlength="30">
+                    </div>
+                    <div>
+                        <label for="correo">Correo</label>
+                        <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="contrasena">Contraseña</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Mínimo 8 caracteres" required maxlength="8">
+                            <button type="button" class="toggle-password" onclick="togglePassword()" aria-label="Mostrar u ocultar contraseña">
+                                <i id="eye-icon" class="fa-solid fa-eye-slash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="numeroCelular">Número de celular</label>
+                        <input type="tel" id="numeroCelular" name="numeroCelular" placeholder="Ej: 3001234567" required  maxlength="10">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="tipoDocumento">Tipo De Documento</label>
+                        <select id="tipoDocumento" name="tipoDocumento" required>
+                            <option value="">Seleccione...</option>
+                            <option value="NIT">NIT</option>
+                            <option value="CC">Cédula de Ciudadanía</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                            <option value="PAS">Pasaporte</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="numeroDocumento">Número de Documento</label>
+                        <input type="text" id="numeroDocumento" name="numeroDocumento" placeholder="NIT" required maxlength="10">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información Del Inversionista -->
+            <div class="sector">
+                <h2 class="sector-titulo">Perfil de Inversionista <i class="fa-solid fa-chart-line"></i></h2>
+                
+                <div>
+                    <label for="nombreFondo">Nombre Del Fondo De Inversión</label>
+                    <input type="text" id="nombreFondo" name="nombreFondo" required maxlength="30">
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label>Tipo De Inversión</label>
+                    <div class="radio-group vertical">
+                        <div class="radio-option">
+                            <input type="radio" id="capital" name="tipoInversion" value="capital" required>
+                            <label for="capital">Capital De Riesgo</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="angel" name="tipoInversion" value="angel">
+                            <label for="angel">Inversión Ángel</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="credito" name="tipoInversion" value="credito">
+                            <label for="credito">Crédito</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label>Etapas De Los Proyectos En Los Que Invierte</label>
+                    <div class="checkbox-group vertical">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="idea" name="etapas" value="idea">
+                            <label for="idea">Idea</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="prototipo" name="etapas" value="prototipo">
+                            <label for="prototipo">Prototipo</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="empresa" name="etapas" value="empresa">
+                            <label for="empresa">Empresa En Crecimiento</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    <label>Áreas De Interés Dentro Del Sector</label>
+                    <div class="checkbox-group vertical">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="tecnologias" name="areas" value="tecnologias">
+                            <label for="tecnologias">Tecnologías Limpias</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="optimizacion" name="areas" value="optimizacion">
+                            <label for="optimizacion">Optimización De La Cadena De Suministro</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="industrializacion" name="areas" value="industrializacion">
+                            <label for="industrializacion">Industrialización Del Carbón</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acuerdo -->
+            <div class="sector terms">
+                 <div class="checkbox-option">
+                    <input type="checkbox" id="terminos" required>
+                    <label for="terminos">Acepto Los <a href="{{ url_for('habeasdata') }}" target="_blank">Términos y Condiciones</a></label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Finalizar Registro</button>
+        </form>
+    </div>
+   <script src="{{ url_for('static', filename='Js/registro_inversionista.js') }}"></script>
+</body>
+</html>

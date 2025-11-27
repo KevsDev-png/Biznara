@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Mensajes - Mineconect</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D572C", 
+                        "accent": "#F39C12",
+                        "success": "#76B947",
+                        "danger": "#E74C3C",
+                        "background": "#F4F6F8",
+                        "card-bg": "#FFFFFF",
+                        "text-primary": "#212529",
+                        "text-secondary": "#6C757D",
+                        "message-outgoing": "#F39C12",
+                        "message-incoming": "#e5e7eb",
+                        "message-incoming-dark": "#374151",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-background font-display text-text-primary">
+    <div class="flex h-screen w-full">
+        
+        <aside class="flex h-full w-64 flex-col bg-primary text-white">
+            <div class="flex h-full flex-col justify-between p-4">
+                <div class="flex flex-col gap-6">
+                    <div class="sidebar-brand" style="display: flex; flex-direction: column; align-items: center; padding: 20px 1rem;">
+                        <img src="/static/Img/Min.png" alt="Logo Mineconect" style="height: 40px; margin-bottom: 10px;">
+                        <span style="color: white; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">MINECONECT</span>
+                    </div>
+                    <nav class="flex flex-col gap-2">
+                        <a href="/Empresario-inicio" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">home</span>
+                            <p class="text-sm font-medium leading-normal">Inicio</p>
+                        </a>
+                        <a href="/Empresario-diagnostico" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">assessment</span>
+                            <p class="text-sm font-medium leading-normal">Mi Diagnóstico</p>
+                        </a>
+                        <a href="/Empresario-alianzas" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">groups</span>
+                            <p class="text-sm font-medium leading-normal">Alianzas</p>
+                        </a>
+                        <a href="/Empresario-convocatorias" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">campaign</span>
+                            <p class="text-sm font-medium leading-normal">Convocatorias</p>
+                        </a>
+                        <a href="/Empresario-discusiones" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">forum</span>
+                            <p class="text-sm font-medium leading-normal">Discusiones</p>
+                        </a>
+                        
+                        <a href="/Empresario-mensajes" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 text-accent transition-colors">
+                            <span class="material-symbols-outlined">chat</span>
+                            <p class="text-sm font-bold leading-normal">Mensajes</p>
+                        </a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-1 border-t border-white/20 pt-4">
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white" href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Configuración</p>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white" href="#">
+                        <span class="material-symbols-outlined">logout</span>
+                        <p class="text-sm font-medium leading-normal">Cerrar Sesión</p>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="flex flex-1 flex-col h-full overflow-hidden">
+            
+            <header class="flex shrink-0 items-center justify-between bg-white px-6 py-3 shadow-sm sm:px-6">
+                <div class="flex items-center gap-4">
+                    <h2 class="text-lg font-bold leading-tight tracking-tight text-gray-900">Mensajes</h2>
+                </div>
+                <div class="flex flex-1 items-center justify-end gap-4">
+                    <label class="relative hidden w-full max-w-sm lg:block">
+                        <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                            <span class="material-symbols-outlined text-gray-500">search</span>
+                        </span>
+                        <input class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-accent focus:ring-accent" placeholder="Buscar..." type="search"/>
+                    </label>
+                    <button class="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-accent">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" 
+                             data-alt="User avatar image" 
+                             style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKMGmBMv5oIuRLMBvf_CTOm7GoPPj5ATsWRxEtJmUCVZ2_KdX0VebF3pE4v-4Xt7yyQuPgPhES0RRijovTYnK_1OnI9OJN6xr-ta7-KicNQiY9ch9yFc8Kx_WBvtfwSN9AGWfoWkEt0ozY7CD_IxpmIYRbGT-BG2Zp60BhbAsc1YLdHdEC7VpO7ooGHU0uCCRrLgbRVnQNBGrVZdaXmlWvv70JUVOh0NYqKjUvyqZa93Uh-LO8UYzW_6m0MqsLeRMQixcYIRmszF4");'>
+                        </div>
+                        <div class="hidden text-right lg:block">
+                            <p class="text-sm font-semibold text-text-primary">Minera S.A.S</p>
+                            <p class="text-xs text-text-secondary">Empresario</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-hidden p-6 font-body"> 
+                <div class="flex h-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50 shadow-sm overflow-hidden">
+                    
+                    <div class="w-full max-w-sm flex-col border-r border-gray-200 dark:border-gray-700 flex bg-white">
+                        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">Conversaciones Recientes</h3>
+                            <label class="flex flex-col min-w-40 h-12 w-full">
+                                <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                                    <div class="text-gray-500 dark:text-gray-400 flex bg-background dark:bg-gray-700 items-center justify-center pl-4 rounded-l-lg border border-r-0 border-gray-300">
+                                        <span class="material-symbols-outlined">search</span>
+                                    </div>
+                                    <input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-lg text-gray-900 dark:text-gray-100 focus:outline-0 focus:ring-2 focus:ring-accent/50 border border-gray-300 border-l-0 bg-background dark:bg-gray-700 h-full placeholder:text-gray-500 dark:placeholder:text-gray-400 px-4 text-base font-normal leading-normal" placeholder="Buscar empresa..." value=""/>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="flex-1 overflow-y-auto">
+                            <div id="chat-item-cb" onclick="loadChat('cb')" class="flex items-center gap-4 bg-accent/10 px-4 min-h-[72px] py-3 justify-between border-l-4 border-accent cursor-pointer hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-blue-100 text-blue-700 font-bold text-lg">CB</div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-gray-900 text-base font-bold leading-normal line-clamp-1">Carbones de Boyacá</p>
+                                        <p class="text-gray-600 text-sm font-normal leading-normal line-clamp-1">Ah bueno sumercé, me alegra mucho...</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 flex flex-col items-end gap-1">
+                                    <p class="text-gray-500 text-xs font-normal leading-normal">09:00 AM</p>
+                                </div>
+                            </div>
+
+                            <div id="chat-item-ms" onclick="loadChat('ms')" class="flex items-center gap-4 bg-white px-4 min-h-[72px] py-3 justify-between border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-emerald-100 text-emerald-700 font-bold text-lg">MS</div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-gray-900 text-base font-bold leading-normal line-clamp-1">Minerales del Sugamuxi</p>
+                                        <p class="text-gray-700 text-sm font-bold leading-normal line-clamp-1">Hágame un favor y revíselos apenas pueda...</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 flex flex-col items-end gap-1">
+                                    <p class="text-gray-500 text-xs font-normal leading-normal">10:35 AM</p>
+                                    <span id="badge-ms" class="w-2.5 h-2.5 bg-accent rounded-full"></span>
+                                </div>
+                            </div>
+
+                            <div id="chat-item-cm" onclick="loadChat('cm')" class="flex items-center gap-4 bg-white px-4 min-h-[72px] py-3 justify-between border-l-4 border-transparent cursor-pointer hover:bg-gray-50 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-purple-100 text-purple-700 font-bold text-lg">CM</div>
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-gray-900 text-base font-medium leading-normal line-clamp-1">Cooperativa Minera</p>
+                                        <p class="text-gray-500 text-sm font-normal leading-normal line-clamp-1">Sí señor, allá estamos a las 8:00 AM...</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0"><p class="text-gray-500 text-xs font-normal leading-normal">Ayer</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 flex flex-col bg-white/50 relative">
+                        <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+                            <div class="flex items-center gap-4">
+                                <div id="header-avatar" class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-700 font-bold text-xl">CB</div>
+                                <div class="flex flex-col">
+                                    <h3 id="header-name" class="text-lg font-bold text-gray-900">Carbones de Boyacá S.A.S</h3>
+                                    <p id="header-status" class="text-sm text-green-500">En línea</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full text-gray-500 hover:bg-gray-100"><span class="material-symbols-outlined">videocam</span></button>
+                                <button class="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-full text-gray-500 hover:bg-gray-100"><span class="material-symbols-outlined">info</span></button>
+                            </div>
+                        </div>
+                        
+                        <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-background"></div>
+                        
+                        <div class="flex items-center gap-4 p-4 border-t border-gray-200 bg-white">
+                            <button class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full text-gray-500 hover:bg-gray-100"><span class="material-symbols-outlined">add_reaction</span></button>
+                            <button class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full text-gray-500 hover:bg-gray-100"><span class="material-symbols-outlined">attach_file</span></button>
+                            <input class="form-input flex-1 rounded-full border-gray-300 bg-background focus:ring-2 focus:ring-accent focus:border-accent text-gray-900 placeholder:text-gray-500" placeholder="Escribe tu mensaje aquí..." type="text"/>
+                            <button class="flex max-w-xs cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full h-12 bg-accent text-white text-sm font-bold min-w-0 px-6 hover:bg-accent/90 transition-colors">
+                                <span>Enviar</span>
+                                <span class="material-symbols-outlined !text-xl">send</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const chatData = {
+            'cb': {
+                name: 'Carbones de Boyacá S.A.S',
+                status: 'En línea',
+                initials: 'CB',
+                colorClass: 'bg-blue-100 text-blue-700',
+                messages: [
+                    { type: 'incoming', text: 'Buenos días Ingeniero, ¿cómo ha estado? ¿Qué tal les salió la maquinaria que trajeron de Sogamoso?', time: '08:30 AM' },
+                    { type: 'outgoing', text: 'Todo muy bien, sí señor. Ya la estamos instalando en el patio principal. Yo creo que para el viernes ya la tenemos operando.', time: '08:45 AM' },
+                    { type: 'incoming', text: 'Ah bueno sumercé, me alegra mucho. Cualquier cosa que necesite con los técnicos de Nobsa me avisa, estamos para colaborarnos.', time: '09:00 AM' }
+                ]
+            },
+            'ms': {
+                name: 'Minerales del Sugamuxi',
+                status: 'Ausente hace 15 min',
+                initials: 'MS',
+                colorClass: 'bg-emerald-100 text-emerald-700',
+                messages: [
+                    { type: 'incoming', text: 'Ingeniero, cordial saludo. Ya le envié al correo los resultados del laboratorio de Paipa.', time: '09:15 AM' },
+                    { type: 'incoming', text: 'Hágame un favor y revíselos apenas pueda, sumercé, que el porcentaje de azufre nos salió un poquito alto en la muestra del norte.', time: '10:35 AM' }
+                ]
+            },
+            'cm': {
+                name: 'Cooperativa Minera',
+                status: 'Últ. vez ayer',
+                initials: 'CM',
+                colorClass: 'bg-purple-100 text-purple-700',
+                messages: [
+                    { type: 'outgoing', text: '¿Don Carlos, cómo vamos? ¿Sí suben mañana a la mina para lo de la inspección?', time: 'Ayer 2:00 PM' },
+                    { type: 'incoming', text: 'Sí señor, allá estamos a las 8:00 AM con el favor de Dios. Ya tenemos listos los papeles de la Agencia Nacional.', time: 'Ayer 2:30 PM' }
+                ]
+            }
+        };
+
+        function loadChat(chatId) {
+            const data = chatData[chatId];
+            if (!data) return;
+
+            const headerAvatar = document.getElementById('header-avatar');
+            headerAvatar.className = `flex items-center justify-center h-12 w-12 rounded-full font-bold text-xl ${data.colorClass}`;
+            headerAvatar.innerText = data.initials;
+            
+            document.getElementById('header-name').innerText = data.name;
+            document.getElementById('header-status').innerText = data.status;
+
+            const messagesContainer = document.getElementById('chat-messages');
+            messagesContainer.innerHTML = ''; 
+
+            data.messages.forEach(msg => {
+                const msgHTML = createMessageHTML(msg, data);
+                messagesContainer.insertAdjacentHTML('beforeend', msgHTML);
+            });
+
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            updateActiveListItem(chatId);
+        }
+
+        function createMessageHTML(msg, userData) {
+            if (msg.type === 'incoming') {
+                return `
+                <div class="flex items-end gap-3 max-w-lg">
+                    <div class="flex items-center justify-center h-8 w-8 shrink-0 rounded-full font-bold text-xs ${userData.colorClass}">
+                        ${userData.initials}
+                    </div>
+                    <div class="p-3 rounded-xl rounded-bl-none bg-message-incoming text-gray-800">
+                        <p class="text-sm">${msg.text}</p>
+                        <p class="text-xs text-gray-500 text-right mt-1">${msg.time}</p>
+                    </div>
+                </div>`;
+            } else {
+                return `
+                <div class="flex items-end gap-3 justify-end">
+                    <div class="p-3 rounded-xl rounded-br-none bg-message-outgoing text-white">
+                        <p class="text-sm">${msg.text}</p>
+                        <p class="text-xs text-white/70 text-right mt-1">${msg.time}</p>
+                    </div>
+                </div>`;
+            }
+        }
+
+        function updateActiveListItem(activeId) {
+            const ids = ['cb', 'ms', 'cm'];
+            ids.forEach(id => {
+                const item = document.getElementById(`chat-item-${id}`);
+                if (id === activeId) {
+                    item.classList.remove('bg-white', 'border-transparent');
+                    item.classList.add('bg-accent/10', 'border-accent');
+                    const badge = document.getElementById(`badge-${id}`);
+                    if(badge) badge.style.display = 'none';
+                } else {
+                    item.classList.add('bg-white', 'border-transparent');
+                    item.classList.remove('bg-accent/10', 'border-accent');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadChat('cb');
+        });
+    </script>
+</body>
+</html>

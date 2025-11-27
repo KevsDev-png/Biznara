@@ -1,0 +1,4 @@
+.nav-btn:active {
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Un poco más opaco al hacer clic */
+    transition: none; /* Sin transición para una respuesta inmediata */
+}

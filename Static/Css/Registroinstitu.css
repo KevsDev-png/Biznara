@@ -1,0 +1,234 @@
+/* --- Estilos Generales --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #545454;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Contenedor Principal del Formulario --- */
+.contenedor-formulario {
+    background-color: #d9d9d9;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- Encabezado del Formulario --- */
+.parte-titulo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.parte-titulo .fa-landmark {
+    color: #F39C12; /* Naranja */
+}
+
+.iconos {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.contenedor-formulario h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.subtitulo {
+    color: #666;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+/* --- Secciones del Formulario --- */
+.sector {
+    margin-bottom: 30px;
+}
+
+.sector-titulo {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sector-titulo i {
+    color: #000000;
+}
+
+/* --- Filas y Campos del Formulario --- */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: -13px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #F39C12;
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- Contraseña --- */
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 35%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    padding: 5px;
+}
+
+/* --- Opciones de Radio y Checkbox --- */
+.radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.radio-option label, .checkbox-option label {
+    margin: 0;
+    font-weight: 400;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    accent-color: #F39C12; /* Color de selección */
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Mensajes de Error --- */
+.error-message {
+    color: #d32f2f; /* Rojo oscuro para errores */
+    font-size: 0.85em;
+    margin-top: 5px;
+    min-height: 1em; /* Evita que el layout salte al aparecer/desaparecer */
+}
+
+/* --- Modificador para grupos verticales --- */
+.radio-group.vertical,
+.checkbox-group.vertical {
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los items a la izquierda */
+    gap: 12px; /* Espacio entre opciones verticales */
+}
+
+.checkbox-option label a {
+    margin-left: 5px;
+}
+
+/* --- Sección de Términos y Botón de Envío --- */
+.terms {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.terms .checkbox-option a {
+    color: #F39C12;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.terms .checkbox-option a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #F39C12;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #e68a00;
+    transform: translateY(-2px);
+}
+
+/* --- Diseño Responsivo --- */
+@media (max-width: 768px) {
+    .contenedor-formulario {
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .parte-titulo {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .contenedor-formulario h1 {
+        font-size: 1.5em;
+    }
+}

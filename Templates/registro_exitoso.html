@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Exitoso</title>
+    <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/registro_exitoso.css') }}">
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark-wrapper">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <h1>¡Registro Exitoso!</h1>
+        <!-- Usamos la variable 'nombre_perfil' para un saludo más personal -->
+        {% if nombre_perfil %}
+            <p>¡Bienvenido, <strong>{{ nombre_perfil }}</strong>!</p>
+        {% endif %}
+        <!-- Usamos la variable 'tipo_cuenta' para confirmar el tipo de perfil -->
+        <p>Tu cuenta de <strong>{{ tipo_cuenta | capitalize }}</strong> ha sido creada correctamente.</p>
+        <p>Serás redirigido a la página principal en <span id="countdown">5</span> segundos.</p>
+        
+        <a href="{{ url_for('Principal') }}" class="btn-home">Volver a Inicio</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let seconds = 5;
+            const countdownElement = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    // ¡Y CORREGIMOS AQUÍ TAMBIÉN! (La redirección automática)
+                    window.location.href = "{{ url_for('Principal') }}";
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

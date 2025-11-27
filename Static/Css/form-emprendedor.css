@@ -1,0 +1,19 @@
+/* --- ESTILOS PARA EL TEXTAREA --- */
+.input-wrapper textarea {
+    width: 100%;
+    padding: 12px 15px; /* Padding sin espacio extra para icono */
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    font-size: 0.9em;
+    background-color: white;
+    transition: border-color 0.2s;
+    font-family: 'Montserrat', sans-serif; /* Hereda la fuente */
+    min-height: 100px; /* Establece una altura mínima inicial */
+    resize: vertical; /* Permite redimensionar SÓLO verticalmente */
+    /* Si NO quieres que se pueda redimensionar NADA, usa: resize: none; */
+}
+
+.input-wrapper textarea:focus {
+    outline: none;
+    border-color: #F39C12;
+}

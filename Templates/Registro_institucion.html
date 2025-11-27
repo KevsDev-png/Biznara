@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Institución</title>
+    <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/Registroinstitu.css') }}">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <div class="parte-titulo">
+            <div>
+                <img src="{{ url_for('static', filename='Img/Institucion.png') }}" alt="Institucion" class="iconos">
+            </div>
+            <h1>CREA TU CUENTA DE INSTITUCIÓN</h1>
+        </div>
+
+        <p class="subtitulo">Ya casi eres parte del clúster. Solo necesitamos algunos datos</p>
+
+        <form action="{{ url_for('registro_institucion') }}" method="POST">
+            <div class="sector">
+                <h2 class="sector-titulo">
+                    Información De La Institución
+                    <i class="fa-solid fa-building-columns"></i>
+                </h2>
+
+                <div class="form-row">
+                    <div>
+                        <label>Nombre De La Institución</label>
+                        <input type="text" name="nombre_institucion" placeholder="Nombre" required maxlength="150" value="{{ form_data.nombre_institucion if form_data }}">
+                    </div>
+                    <div>
+                        <label>NIT</label>
+                        <input type="text" name="nit" placeholder="Ej:8462453942" id="nit" required maxlength="10" value="{{ form_data.nit if form_data }}">
+                        {% if errors and errors.nit %}
+                            <p class="error-message" style="display: block;">{{ errors.nit }}</p>
+                        {% else %}
+                            <p id="nit-error" class="error-message"></p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="email">Correo</label>
+                        <input
+                            type="email" 
+                            name="correo"
+                            placeholder="ejemplo@correo.com" required value="{{ form_data.correo if form_data }}"
+                            id="email"
+                            onblur="validarCorreo(this.value)">
+                        {% if errors and errors.correo %}
+                            <p class="error-message" style="display: block;">{{ errors.correo }}</p>
+                        {% else %}
+                            <p id="email-error" class="error-message"></p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label>Contraseña</label>
+                        <div class="password-wrapper">
+                            <input type="password" name="contrasena" id="password" placeholder="Minimo 8 caracteres" required minlength="8">
+                            <button type="button" class="toggle-password" onclick="togglePassword()" aria-label="Mostrar u ocultar contraseña">
+                                <i id="eye-icon" class="fa-solid fa-eye-slash"></i>
+                            </button>
+                            <p id="password-error" class="error-message"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label>Tipo De Institución</label>
+                    <div class="radio-group vertical">
+                        <div class="radio-option">
+                            <input type="radio" name="tipo_institucion" id="universidad" value="universidad" required>
+                            <label for="universidad" style="margin: 0;">Universidad</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="tipo_institucion" id="entidad" value="entidad">
+                            <label for="entidad" style="margin: 0;">Entidad Financiera</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="tipo_institucion" id="gremios" value="gremios">
+                            <label for="gremios" style="margin: 0;">Gremios</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="tipo_institucion" id="agencia" value="agencia">
+                            <label for="agencia" style="margin: 0;">Agencia Gubernamental</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label>Municipio</label>
+                <select name="municipio" required>
+                    <option value="">Seleccionar</option>
+                    <option value="almeida">Almeida</option>
+                    <option value="aquitania">Aquitania</option>
+                    <option value="arcabuco">Arcabuco</option>
+                    <option value="belen">Belén</option>
+                    <option value="berbeo">Berbeo</option>
+                    <option value="beteitiva">Betéitiva</option>
+                    <option value="boavita">Boavita</option>
+                    <option value="boyaca">Boyacá</option>
+                    <option value="briceño">Briceño</option>
+                    <option value="buenavista">Buenavista</option>
+                    <option value="busbanza">Busbanzá</option>
+                    <option value="caldas">Caldas</option>
+                    <option value="campohermoso">Campohermoso</option>
+                    <option value="cerinza">Cerinza</option>
+                    <option value="chinavita">Chinavita</option>
+                    <option value="chiquinquira">Chiquinquirá</option>
+                    <option value="chiscas">Chiscas</option>
+                    <option value="chita">Chita</option>
+                    <option value="chitaraque">Chitaraque</option>
+                    <option value="chivata">Chivatá</option>
+                    <option value="cienega">Ciénega</option>
+                    <option value="combita">Cómbita</option>
+                    <option value="coper">Coper</option>
+                    <option value="corrales">Corrales</option>
+                    <option value="covarachia">Covarachía</option>
+                    <option value="cubara">Cubará</option>
+                    <option value="cucaita">Cucaita</option>
+                    <option value="cuitiva">Cuítiva</option>
+                    <option value="chiquiza">Chíquiza</option>
+                    <option value="chivor">Chivor</option>
+                    <option value="duitama">Duitama</option>
+                    <option value="el_cocuy">El Cocuy</option>
+                    <option value="el_espino">El Espino</option>
+                    <option value="firavitoba">Firavitoba</option>
+                    <option value="floresta">Floresta</option>
+                    <option value="gachantiva">Gachantivá</option>
+                    <option value="gameza">Gámeza</option>
+                    <option value="garagoa">Garagoa</option>
+                    <option value="guacamayas">Guacamayas</option>
+                    <option value="guateque">Guateque</option>
+                    <option value="guayata">Guayatá</option>
+                    <option value="guican">Güicán</option>
+                    <option value="iza">Iza</option>
+                    <option value="jenesano">Jenesano</option>
+                    <option value="jerico">Jericó</option>
+                    <option value="la_capilla">La Capilla</option>
+                    <option value="la_victoria">La Victoria</option>
+                    <option value="la_uvita">La Uvita</option>
+                    <option value="labranzagrande">Labranzagrande</option>
+                    <option value="macanal">Macanal</option>
+                    <option value="maripi">Maripí</option>
+                    <option value="miraflores">Miraflores</option>
+                    <option value="mongua">Mongua</option>
+                    <option value="mongui">Monguí</option>
+                    <option value="moniquira">Moniquirá</option>
+                    <option value="motavita">Motavita</option>
+                    <option value="muzo">Muzo</option>
+                    <option value="nobsa">Nobsa</option>
+                    <option value="nuevo_colon">Nuevo Colón</option>
+                    <option value="oicata">Oicatá</option>
+                    <option value="otanche">Otanche</option>
+                    <option value="pachavita">Pachavita</option>
+                    <option value="paez">Páez</option>
+                    <option value="paipa">Paipa</option>
+                    <option value="pajarito">Pajarito</option>
+                    <option value="panqueba">Panqueba</option>
+                    <option value="pauna">Pauna</option>
+                    <option value="paya">Paya</option>
+                    <option value="paz_de_rio">Paz de Río</option>
+                    <option value="pesca">Pesca</option>
+                    <option value="pisba">Pisba</option>
+                    <option value="puerto_boyaca">Puerto Boyacá</option>
+                    <option value="quipama">Quípama</option>
+                    <option value="ramiriqui">Ramiriquí</option>
+                    <option value="raquira">Ráquira</option>
+                    <option value="rondon">Rondón</option>
+                    <option value="saboya">Saboyá</option>
+                    <option value="sachica">Sáchica</option>
+                    <option value="samaca">Samacá</option>
+                    <option value="san_eduardo">San Eduardo</option>
+                    <option value="san_jose_de_pare">San José de Pare</option>
+                    <option value="san_luis_de_gaceno">San Luis de Gaceno</option>
+                    <option value="san_mateo">San Mateo</option>
+                    <option value="san_miguel_de_sema">San Miguel de Sema</option>
+                    <option value="san_pablo_de_borbur">San Pablo de Borbur</option>
+                    <option value="santana">Santana</option>
+                    <option value="santa_maria">Santa María</option>
+                    <option value="santa_rosa_de_viterbo">Santa Rosa de Viterbo</option>
+                    <option value="santa_sofia">Santa Sofía</option>
+                    <option value="sativanorte">Sativanorte</option>
+                    <option value="sativasur">Sativasur</option>
+                    <option value="siachoque">Siachoque</option>
+                    <option value="soata">Soatá</option>
+                    <option value="socota">Socotá</option>
+                    <option value="socha">Socha</option>
+                    <option value="sogamoso">Sogamoso</option>
+                    <option value="somondoco">Somondoco</option>
+                    <option value="sora">Sora</option>
+                    <option value="sotaquira">Sotaquirá</option>
+                    <option value="soraca">Soracá</option>
+                    <option value="susacon">Susacón</option>
+                    <option value="sutamarchan">Sutamarchán</option>
+                    <option value="sutatenza">Sutatenza</option>
+                    <option value="tasco">Tasco</option>
+                    <option value="tenza">Tenza</option>
+                    <option value="tibana">Tibaná</option>
+                    <option value="tibasosa">Tibasosa</option>
+                    <option value="tinjaca">Tinjacá</option>
+                    <option value="tipacoque">Tipacoque</option>
+                    <option value="toca">Toca</option>
+                    <option value="togui">Togüí</option>
+                    <option value="topaga">Tópaga</option>
+                    <option value="tota">Tota</option>
+                    <option value="tunja">Tunja</option>
+                    <option value="tunungua">Tununguá</option>
+                    <option value="turmeque">Turmequé</option>
+                    <option value="tuta">Tuta</option>
+                    <option value="tutaza">Tutazá</option>
+                    <option value="umbita">Úmbita</option>
+                    <option value="ventaquemada">Ventaquemada</option>
+                    <option value="viracacha">Viracachá</option>
+                    <option value="zetaquira">Zetaquira</option>
+                </select>
+                </div>
+
+                <div>
+                    <label>Descripción de su misión y los servicios que ofrece en el sector</label>
+                    <textarea name="descripcion" placeholder="Descripción de su misión y los servicios que ofrece en el sector" required maxlength="500"></textarea>
+                </div>
+            </div>
+
+           <div class="sector">
+                <h2 class="sector-titulo">Áreas De Especialización <i class="fa-solid fa-star"></i></h2>
+                 <div class="radio-group vertical">
+                        <div class="radio-option">
+                            <input type="radio" name="area_especializacion" id="asesoria" value="asesoria_tecnica" required>
+                            <label for="asesoria">Asesoría Técnica</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="area_especializacion" id="programas" value="programas_capacitacion">
+                            <label for="programas">Programas de Capacitación</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="area_especializacion" id="lineas" value="lineas_credito">
+                            <label for="lineas">Líneas de Crédito</label>
+                        </div>
+            </div>
+           </div>
+            <div class="sector">
+                <h2 class="sector-titulo">Participación Activa <i class="fa-solid fa-people-group"></i></h2>
+                <div class="checkbox-group vertical">
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="participacion_activa" id="interaccion" value="interaccion_comunidad">
+                        <label for="interaccion" style="margin: 0;">Interacción Con La Comunidad</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="participacion_activa" id="banco" value="banco_proyectos">
+                        <label for="banco" style="margin: 0;">Banco De Proyectos</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" name="participacion_activa" id="analisis" value="analisis_impacto">
+                        <label for="analisis" style="margin: 0;">Análisis De Impacto</label>
+                        <p id="participacion-error" class="error-message"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sector terms">
+                <div class="checkbox-option">
+                    <input type="checkbox" name="terminos" id="terminos" required>
+                    Acepto los<a href="{{ url_for('habeasdata') }}" style="text-decoration: underline; color: blue; margin-left: -6px;">Términos y Condiciones</a>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Finalizar Registro</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='Js/registro_institucion.js') }}"></script>
+</body>
+</html>
