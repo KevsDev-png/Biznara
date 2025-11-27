@@ -110,10 +110,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Validación de correo al salir del campo
     if (correoInput) {
-        correoInput.addEventListener('blur', () => {
+        correoInput.addEventListener('blur', async () => {
             const emailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-            if (correoInput.value && !emailRegex.test(correoInput.value)) {
-                showNotification('El correo no es válido o ya esta registrado. Por favor, ingrese un correo válido.', 'error');
+            const email = correoInput.value;
+
+            if (!email) return; // No hacer nada si el campo está vacío
+
+            // 1. Validar formato del correo
+            if (!emailRegex.test(email)) {
+                showNotification('El formato del correo no es válido. Por favor, ingrese un correo válido.', 'error');
+                return;
+            }
+
+            // 2. Verificar disponibilidad del correo con el servidor
+            try {
+                // Usamos la misma ruta del formulario, pero enviamos un JSON específico
+                const response = await fetch('/registro_emprendedor', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    // La clave 'check_email' le dice a Python que es una validación
+                    body: JSON.stringify({ check_email: true, email: email })
+                });
+                const result = await response.json();
+                if (!result.available) {
+                    showNotification(result.message || 'El correo electrónico ya está en uso.', 'error');
+                }
+            } catch (error) {
+                console.error('Error al verificar el correo:', error);
+                showNotification('No se pudo verificar el correo en este momento. Inténtalo de nuevo.', 'info');
             }
         });
     }
@@ -179,4 +203,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
     });
+
+    // --- LÓGICA PARA MOSTRAR MENSAJES FLASH DESDE EL SERVIDOR ---
+    // Busca si hay un elemento con el ID 'flash-messages' que contiene los errores.
+    const flashMessages = document.getElementById('flash-messages');
+    if (flashMessages) {
+        // Itera sobre cada mensaje de error y lo muestra como una notificación.
+        Array.from(flashMessages.children).forEach(message => {
+            showNotification(message.textContent, 'error');
+        });
+    }
 });
