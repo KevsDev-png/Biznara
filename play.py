@@ -70,14 +70,35 @@ def habeasdata():
 @app.route('/registro_emprendedor', methods=['GET', 'POST'])
 def registro_emprendedor():
     if request.method == 'POST':
+        # --- CASO 1: Verificación de correo vía AJAX ---
+        # Si la petición es JSON y solo contiene el correo, es para validación.
+        if request.is_json and 'check_email' in request.get_json():
+            data = request.get_json()
+            correo = data.get('email')
+            if db.session.execute(db.select(Usuario).filter_by(email=correo)).first():
+                return jsonify({'available': False, 'message': 'El correo electrónico ya está registrado.'})
+            else:
+                return jsonify({'available': True})
+
+        # --- CASO 2: Envío completo del formulario (comportamiento original) ---
         try:
+            correo = request.form['correo']
+            # Verificar si el correo ya existe
+            if db.session.execute(db.select(Usuario).filter_by(email=correo)).first():
+                flash('El correo electrónico ya está registrado. Por favor, usa otro.', 'error')
+                return render_template('Registro_emprendedor.html', form_data=request.form)
+
+            # Si el correo está disponible, continuamos con el registro...
             # 1. Crear el usuario base
             nuevo_usuario = Usuario(
-                email=request.form['correo'],
+                email=correo,
                 tipo_perfil=TipoPerfil.EMPRENDEDOR
             )
             nuevo_usuario.set_password(request.form['contrasena'])
 
+            # Recoger los valores de los checkboxes de tipo de apoyo
+            tipos_apoyo_lista = request.form.getlist('tipo_apoyo')
+            tipos_apoyo_str = ','.join(tipos_apoyo_lista)
             # 2. Crear el perfil específico del emprendedor
             nuevo_emprendedor = Emprendedor(
                 nombre_completo=request.form['nombre_completo'],
@@ -88,7 +109,7 @@ def registro_emprendedor():
                 titulo_proyecto=request.form['titulo_proyecto'],
                 descripcion_proyecto=request.form['descripcion_proyecto'],
                 relacion_sector=request.form['relacion_sector'],
-                tipo_apoyo=request.form['tipo_apoyo']
+                tipo_apoyo=tipos_apoyo_str
             )
 
             # 3. Asociar el perfil al usuario y guardar en la base de datos
@@ -105,7 +126,8 @@ def registro_emprendedor():
         except Exception as e:
             db.session.rollback() # Revertir cambios si hay un error
             app.logger.error(f"Error en registro de emprendedor: {e}")
-            flash(f'Hubo un error en el registro: {e}', 'danger')
+            flash('Hubo un error inesperado durante el registro. Por favor, inténtalo de nuevo.', 'error')
+            return redirect(url_for('registro_emprendedor'))
 
     return render_template('Registro_emprendedor.html')
   

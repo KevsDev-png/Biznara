@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
     <title>Registro de Emprendedor SENA</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Css/form-empresario.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/Registroempren.css') }}"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
 </head>
 <body>
@@ -74,9 +74,10 @@
 
         <div class="form-group">
             <label class="group-label">Tipo De Apoyo Que Busca</label>
-            <div class="radio-group-horizontal"> <label><input type="radio" name="tipo_apoyo" value="financiamiento" required> Financiamiento</label>
-                <label><input type="radio" name="tipo_apoyo" value="mentoria"> Mentoría</label>
-                <label><input type="radio" name="tipo_apoyo" value="alianzas"> Alianzas</label>
+            <div class="radio-group-horizontal"> 
+                <label><input type="checkbox" name="tipo_apoyo" value="financiamiento"> Financiamiento</label>
+                <label><input type="checkbox" name="tipo_apoyo" value="mentoria"> Mentoría</label>
+                <label><input type="checkbox" name="tipo_apoyo" value="alianzas"> Alianzas</label>
             </div>
         </div>
 
@@ -87,6 +88,7 @@
 
         <button type="submit" class="submit-button">FINALIZAR REGISTRO</button>
     </form>
+
 </div>
 
 <script src="{{ url_for('static', filename='Js/form-emprendedor.js') }}"></script>

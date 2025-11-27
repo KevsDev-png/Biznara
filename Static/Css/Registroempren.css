@@ -313,9 +313,8 @@ body {
         flex-direction: column;
     }
 }
-
-        /* Espacio para los checkboxes de "Tipo de Apoyo" */
-        .radio-group-horizontal input[type="checkbox"] {
-            margin-right: 6px; /* Ajusta este valor si necesitas más o menos espacio */
-            vertical-align: middle; /* Alinea verticalmente el checkbox con el texto */
-        }
+     .radio-group-horizontal input[type="checkbox"] {
+         margin-right: 6px; 
+         vertical-align: middle; 
+         accent-color: #F39C12; 
+     }
