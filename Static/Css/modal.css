@@ -1,0 +1,532 @@
+/* El fondo oscuro semi-transparente */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Clase para ocultar el modal */
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none; /* Evita clics cuando está oculto */
+}
+
+/* El contenido blanco del modal */
+.modal-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 900px;
+    width: 90%;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    max-height: 85vh;
+    overflow-y: auto
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.9);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Contenedor de las 4 opciones */
+.profile-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Para que se vea bien en móviles */
+}
+
+/* Cada tarjeta de perfil */
+.profile-card {
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    width: 180px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.profile-card.selected {
+    border-color: #28a745; /* Verde */
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+}
+
+.profile-card img {
+    height: 96px;
+    margin-bottom: 15px;
+}
+
+.profile-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.profile-card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 0;
+}
+
+/* Botón de Continuar */
+.btn-primary {
+    background-color: #f57c00; /* Naranja */
+    color: white;
+    border: none;
+    padding: 14px 50px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ef6c00;
+}
+
+/* Botón para cerrar el modal (la X) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 38px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+/* Botón para volver en el modal de verificación */
+.back-btn {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 32px; /* Más grande para mejor visibilidad */
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+    color: white;
+}
+
+/* --- Estilos para el nuevo Modal de Login --- */
+
+.login-modal-container {
+    background: white;
+    border-radius: 24px;
+    display: flex;
+    max-width: 900px;
+    width: 90%; /* Ajustado para mejor responsividad */
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.hidden .login-modal-container {
+    transform: scale(0.9);
+}
+
+.logo-section {
+    background: #fcfafb;
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.login-logo {
+    width: 280px;
+    height: auto;
+}
+
+.login-section {
+    background: linear-gradient(135deg, #4a8c5c 0%, #417e34 100%);
+    padding: 60px 50px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center;
+    color: white;
+    position: relative; /* Para posicionar el botón de cierre */
+}
+
+.login-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: white; /* Asegura el color del texto */
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    max-width: 412px; /* Limita el ancho en pantallas grandes */
+
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.login-section input {
+    max-width: 350px; /* Limita el ancho en pantallas grandes */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-section input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* Estilos para el nuevo select de perfil */
+.login-section select {
+    max-width: 350px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 40px 14px 20px; /* Espacio extra a la derecha para la flecha */
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    color: #333; /* Color de texto estándar */
+    background-color: white;
+    cursor: pointer;
+    /* Quitar la apariencia nativa del select */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Añadir una flecha personalizada */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+}
+
+.eye-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #666;
+    stroke-width: 2;
+    fill: none;
+}
+
+.forgot-password {
+    text-align: center;
+    margin: 15px 0 30px;
+}
+
+.forgot-password a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.forgot-password a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.login-section .submit-btn {
+    max-width: 350px; /* Limita el ancho en pantallas grandes */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #f0a855 0%, #e89a3f 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(240, 168, 85, 0.3);
+    margin-left: 7%
+}
+
+.login-section .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(240, 168, 85, 0.4);
+}
+
+.login-section .submit-btn:active {
+    transform: translateY(0);
+}
+
+.iniciar-sesion-btn{
+    max-width: 350px; /* Limita el ancho en pantallas grandes */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #f0a855 0%, #e89a3f 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(240, 168, 85, 0.3);
+}
+
+/* Botón para la vista de recuperación de contraseña */
+.recovery-btn {
+    max-width: 350px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #f0a855 0%, #e89a3f 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(240, 168, 85, 0.3);
+    margin-top: 10px; /* Añadimos un pequeño margen superior */
+}
+
+
+/* --- Estilos para el formulario de verificación de código --- */
+
+.verification-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.verification-subtitle strong {
+    font-weight: 600;
+    color: white;
+}
+
+.verification-code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.verification-code-inputs input {
+    width: 61px; /* Ancho para cada campo individual */
+    height: 60px;
+    padding: 0; /* Resetea el padding para asegurar el centrado */
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Línea inferior sutil */
+    border-radius: 0;
+    outline: none;
+    color: #ffffff; /* Color de texto blanco */
+    background-color: transparent; /* Fondo transparente */
+    transition: all 0.3s ease;
+    -moz-appearance: textfield; /* Oculta las flechas en Firefox */
+}
+
+.verification-code-inputs input::-webkit-outer-spin-button,
+.verification-code-inputs input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.verification-code-inputs input:focus {
+    border-bottom-color: #f0a855; /* Resalta la línea inferior al enfocar */
+    box-shadow: none; /* Quitamos el box-shadow */
+}
+
+.resend-code {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.resend-code a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.resend-code a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Animación de bienvenida */
+.welcome-screen {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #4a8c5c 0%, #417e34 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    animation: fadeOut 0.8s ease-in-out 2.5s forwards;
+    border-radius: 24px; /* Para que coincida con el contenedor */
+}
+
+.welcome-text {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    padding: 0 40px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.welcome-subtitle {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; visibility: visible; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+@media (max-width: 768px) {
+    .login-modal-container {
+        flex-direction: column;
+        max-height: 90vh; /* Evita que el modal sea demasiado alto */
+        overflow-y: auto; /* Permite scroll si el contenido no cabe */
+    }
+
+    /* Ajustar la sección del logo en móviles en lugar de ocultarla */
+    .logo-section {
+        padding: 30px 20px; /* Reducir el padding para móviles */
+        order: -1; /* Asegura que el logo se mantenga arriba */
+    }
+
+    .login-logo {
+        width: 150px; /* Hacemos el logo más pequeño en móviles */
+    }
+
+    .login-section {
+        padding: 40px 30px;
+    }
+
+    .welcome-text {
+        font-size: 28px;
+    }
+
+    .welcome-subtitle {
+        font-size: 16px;
+    }
+
+    .verification-code-inputs {
+        gap: 8px; /* Reducimos el espacio entre inputs */
+        margin-bottom: 25px; /* Menos margen inferior */
+    }
+
+    .verification-code-inputs input {
+        width: 40px; /* Reducimos más el tamaño de los inputs */
+        height: 48px;
+        font-size: 20px;
+    }
+    /* Resetea el margen del botón de login para centrarlo correctamente en móviles */
+    .login-section .submit-btn {
+        margin-left: 0;
+    }
+
+    /* Mejora la visibilidad y posición de los botones de control en móviles */
+    .close-btn, .back-btn {
+        color: white; /* Asegura que sean visibles sobre el fondo verde */
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    .close-btn {
+        right: 20px; /* Reduce el espacio desde el borde */
+    }
+
+    .close-btn:hover, .back-btn:hover {
+        opacity: 1;
+    }
+
+    .login-title{
+        margin-top: 8%;
+    }
+
+    .login-section .submit-btn{
+        width: 90%; /* Hacemos el botón un poco más estrecho que el 100% */
+        max-width: 231px; /* Un máximo para que no se estire demasiado */
+        margin-left: 12%;
+    }
+}

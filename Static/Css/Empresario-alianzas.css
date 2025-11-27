@@ -1,0 +1,15 @@
+/* Configuración de Iconos */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Efectos para las tarjetas de aliados */
+.aliado-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.aliado-card:hover {
+    border-color: #F39C12; /* Color accent */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

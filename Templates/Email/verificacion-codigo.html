@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 20px auto; background-color: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #333; }
+        .code-box { background-color: #e9ecef; border-radius: 5px; padding: 15px 20px; text-align: center; margin: 20px 0; }
+        .code { font-size: 32px; font-weight: bold; color: #000; letter-spacing: 5px; }
+        .footer { text-align: center; margin-top: 30px; font-size: 12px; color: #777; }
+        p { line-height: 1.6; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tu Código de Verificación</h1>
+        </div>
+        
+        <p>Hola {{ nombre_completo }}</p>
+        <p>Usa el siguiente código para completar tu inicio de sesión en Mineconect. Este código es válido por 10 minutos.</p>
+        
+        <div class="code-box">
+            <p class="code">{{ code }}</p>
+        </div>
+
+        <p>Si no intentaste iniciar sesión, puedes ignorar este correo electrónico de forma segura.</p>
+
+        <div class="footer">
+            <p>&copy; 2026 Mineconect. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mineconect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/Principal.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/accessibility.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/modal.css') }}">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="/" class="logo">
+                <img src="{{ url_for('static', filename='Img/Min.png') }}" alt="Mineconect Logo">
+            </a>
+            <button class="menu-toggle" id="menu-toggle" title="Abrir menú">
+                &#9776;
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/" class="nav-button">INICIO</a></li>
+                <li><a href="#sobre-nosotros" class="nav-button">SOBRE NOSOTROS</a></li>
+                <li><a href="#contactanos" class="nav-button">CONTACTENOS</a></li>
+                <li><a href="#" id="iniciar" class="nav-button">INICIAR SESION</a></li>
+                <li><a href="#" id="register-btn" class="nav-button special">REGISTRATE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="video-overlay"></div>
+    <div  class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='Videos/Video_Cluster720.mp4') }}" type="video/mp4">
+            Tu navegador no soporta videos HTML5.
+        </video>
+    </div>
+
+    <main class="main-content">
+        <h1>MINECONECT</h1>
+    </main>
+
+
+    <section id="sobre-nosotros" style="height:80vh; background:#417e34; position: relative;">
+        <div class="General">
+            <div class="Contenido">
+            <h2 id="titulouno">Sobre Nosotros</h2>
+            <p class="Textouno">Nuestro propósito es impulsar el desarrollo minero de la región y fortalecer a las empresas, fomentando su capacidad para competir y cooperar. Lo logramos a través de la participación activa de los diferentes actores dentro de nuestra plataforma.</p>
+            </div>
+
+            <div class="divider">
+                <img id="divider-claro" src="{{ url_for('static', filename='Img/neumatico.png') }}" alt="divider-claro">
+                <img id="divider-oscuro" src="{{ url_for('static', filename='Img/neuoscu.png') }}" alt="divider-oscuro">
+            </div>
+
+            <div class="Contenido">
+            <h2 id="titulodos">Te Invitamos</h2>
+            <p class="Textodos">Participa con nosotros y deja una huella positiva para las futuras generaciones. Ya seas empresa, emprendedor, inversionista o institución, únete a impulsar una minería responsable, sostenible y guiada por valores.</p>
+            </div>
+        </div>
+           <img src="{{ url_for('static', filename='Img/lagartija.png') }}" alt="decoración izquierda" class="img-izquierda">
+           <img src="{{ url_for('static', filename='Img/ranunchis.png') }}" alt="decoración derecha" class="img-derecha">
+    </section>
+
+       <div class="cards-section">
+        <div class="cards-container">
+            <!-- Tarjeta 1: Términos de Uso -->
+            <div class="flip-card" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                
+                         <img src="{{ url_for('static', filename='Img/primericono.png') }}" alt="Icono medio ambiente" class="card-icon">
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="back-content">
+                            Promovemos una minería responsable que prioriza el cuidado y la protección del medio ambiente en cada una de sus etapas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Políticas de Privacidad -->
+            <div class="flip-card" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        
+                         <img src="{{ url_for('static', filename='Img/Proteccion.png') }}" alt="Icono protección" class="card-icon">
+                        
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="back-content">
+                            Cumplimos con las normativas vigentes de protección de datos, garantizando el manejo seguro y responsable de tu información. Nos comprometemos a que tus datos personales nunca serán compartidos con terceros sin tu consentimiento expreso.
+                        </p>
+                       <a href="{{ url_for('habeasdata') }}"class="info-boton" role="button">Ver Políticas</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3: Contacto y Soporte -->
+            <div class="flip-card" onclick="toggleFlip(this)">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      
+                       <img src="{{ url_for('static', filename='Img/Agua.png') }}" alt="Icono agua" class="card-icon">
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="back-content">
+                            Innovamos en procesos sostenibles aplicados a la minería, optimizando el uso del agua y protegiendo los páramos, para garantizar el equilibrio entre productividad y conservación
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+     <section style="height:80vh; position: relative;">
+         <img src="{{ url_for('static', filename='Img/montañas.jpeg') }}" alt="montañas" class="montañas">
+         <img src="{{ url_for('static', filename='Img/Paramo.png') }}" alt="casacadas" class="cascadas">
+         <img src="{{ url_for('static', filename='Img/venado.png') }}" alt="venado" class="venado">
+    </section>
+
+
+
+    <footer id="contactanos" class="main-footer-section">
+        <div class="footer-container">
+            <div class="footer-text footer-left">
+                <p>&copy; 2026 Mineconect</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
+            <img src="{{ url_for('static', filename='Img/Min.png') }}" alt="logo" class="lofeet">
+            <div class="footer-text footer-right">
+                <p>Contacto: mineconecta2@gmail.com</p>
+                <p>Ubicación: Boyacá, Colombia</p>
+                <div class="iconos-sociales">
+                    <a href="https://www.instagram.com/mineconect/" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ url_for('static', filename='Img/Instagram.png') }}" alt="Logo de Instagram" class="social-icon">
+                    </a>
+                    <a href="https://x.com/Mineconect" target="_blank" rel="noopener noreferrer">
+                        <img src="{{ url_for('static', filename='Img/Twitter.png') }}" alt="Logo de Twitter" class="social-icon">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <div id="profile-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal-btn">&times;</button>
+            <h2>Para Empezar, Cuentanos Quién Eres</h2>
+            <p>Selecciona el perfil que mejor te describa</p>
+
+            <div class="profile-options">
+    <div class="profile-card selected" data-profile="empresario">
+        <img src="{{ url_for('static', filename='Img/icono-empresario.png') }}" alt="Icono de Empresario">
+        <h3>Soy un Empresario</h3>
+        <p>Busco optimizar mi empresa y encontrar socios</p>
+    </div>
+
+    <div class="profile-card" data-profile="emprendedor">
+        <img src="{{ url_for('static', filename='Img/icono-emprendedor.png') }}" alt="Icono de Emprendedor">
+        <h3>Soy un Emprendedor SENA</h3>
+        <p>Tengo un proyecto y busco financiación o mentoría</p>
+    </div>
+
+    <div class="profile-card" data-profile="inversionista">
+        <img src="{{ url_for('static', filename='Img/icono-inversionista.png') }}" alt="Icono de Inversionista">
+        <h3>Soy un Inversionista</h3>
+        <p>Busco proyectos prometedores para invertir</p>
+    </div>
+
+    <div class="profile-card" data-profile="institucion">
+        <img src="{{ url_for('static', filename='Img/icono-institucion.png') }}" alt="Icono de Institución">
+        <h3>Soy una Institución</h3>
+        <p>Ofrezco programas, convocatorias o conocimiento</p>
+    </div>
+</div>
+
+            <button class="btn-primary">CONTINUAR</button>
+        </div>
+    </div>
+
+    <!-- Modal de Inicio de Sesión -->
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="login-modal-container">
+            <!-- Pantalla de bienvenida (opcional, se puede quitar si no se desea) -->
+            <div class="welcome-screen">
+                <div class="welcome-text">Bienvenido al Cluster Minero</div>
+            </div>
+
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <!-- Logo animado -->
+                    <img src="{{ url_for('static', filename='Videos/Bucle-unscreen.gif') }}" alt="Logo animado" class="login-logo">
+                </div>
+            </div>
+
+            <!-- Login Section -->
+            <div class="login-section">
+                <button class="close-btn" id="close-login-modal-btn">&times;</button>
+
+                <!-- Vista de Inicio de Sesión -->
+                <div id="login-view">
+                    <h1 class="login-title">INICIAR SESIÓN</h1>
+                    <form id="loginForm" action="{{ url_for('login') }}" method="POST">
+                        <div class="form-group">
+                            <input type="email" id="login-email" name="email" placeholder="Correo Electronico" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="login-profile" name="profile" required>
+                                <option value="" disabled selected>Selecciona tu perfil</option>
+                                <option value="empresario">Empresario</option>
+                                <option value="emprendedor">Emprendedor</option>
+                                <option value="inversionista">Inversionista</option>
+                                <option value="institucion">Institución</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <input type="password" id="login-password" name="password" placeholder="Contraseña" required maxlength="8">
+                                <button type="button" class="password-toggle" onclick="toggleLoginPassword()">
+                                    <svg class="eye-icon" id="login-eye-icon" viewBox="0 0 24 24">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="forgot-password">
+                            <a href="#" id="forgot-password-link">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <button type="submit" class="iniciar-sesion-btn">Iniciar sesión</button>
+                    </form>
+                </div>
+
+                <!-- Vista de Verificación de Código (oculta por defecto) -->
+                <div id="verification-view" style="display: none;">
+                    <button type="button" id="back-to-login-btn" class="back-btn" title="Volver a inicio de sesión">&larr;</button>
+                    <h1 class="login-title">Verificación de Código</h1>
+                    <p class="verification-subtitle">Hemos enviado un código de verificación al correo<br><strong id="verification-email-display"></strong></p>
+                    <form id="verificationForm">
+                        <div class="form-group">
+                            <div class="verification-code-inputs" id="verification-code-container">
+                                <input type="number" class="code-input" min="0" max="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" required>
+                                <input type="number" class="code-input" min="0" max="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" required>
+                                <input type="number" class="code-input" min="0" max="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" required>
+                                <input type="number" class="code-input" min="0" max="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" required>
+                                <input type="number" class="code-input" min="0" max="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" required>
+                                <input type="number" class="code-input" min="0" max="9" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" required>
+                           </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Verificar e Iniciar Sesión</button>
+                        <div class="resend-code">
+                            <a href="#">¿No recibiste el código? Reenviar</a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Vista de Recuperar Contraseña (oculta por defecto) -->
+                <div id="recovery-view" style="display: none;">
+                    <button type="button" id="back-to-login-from-recovery-btn" class="back-btn" title="Volver a inicio de sesión">&larr;</button>
+                    <h1 class="login-title">Recuperar Contraseña</h1>
+                    <p class="verification-subtitle">Ingresa tu correo electrónico y te enviaremos las instrucciones para restablecer tu contraseña.</p>
+                    <form id="recoveryForm">
+                        <div class="form-group">
+                            <input type="email" id="recovery-email" placeholder="Correo Electrónico" required>
+                        </div>
+                        <button type="submit" class="recovery-btn">Enviar Instrucciones</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <script>
+        function toggleFlip(card) {
+            card.classList.toggle('flipped');
+        }
+
+        // Efecto opcional: voltear todas las cartas automáticamente cada 10 segundos
+        function autoFlipCards() {
+            const cards = document.querySelectorAll('.flip-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.toggle('flipped');
+                }, index * 200); // Retraso escalonado para efecto en cascada
+            });
+        }
+
+        // Activar auto-flip cada 15 segundos (opcional)
+        // setInterval(autoFlipCards, 15000);
+
+        // Agregar efectos de hover mejorados
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+   <script src="{{ url_for('static', filename='Js/sienna.js') }}"></script>
+   <script src="{{ url_for('static', filename='Js/custom.js') }}"></script>
+   <script src="{{ url_for('static', filename='Js/main.js') }}"></script>
+   <script src="{{ url_for('static', filename='Js/auth.js') }}"></script>
+   
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
+    <title>Registro de Empresario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Css/form-empresario.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+</head>
+<body>
+
+<div class="form-container">
+    <div class="form-header">
+        <img src="{{ url_for('static', filename='Img/icono-empresario.png') }}" alt="Icono de Empresa"> 
+        <div class="form-header-text">
+            <h1>CREA TU CUENTA DE EMPRESARIO</h1>
+            <p>Ya casi eres parte del clúster. Solo necesitamos algunos datos.</p>
+        </div>
+    </div>
+
+    <form action="{{ url_for('registro_empresario') }}" method="POST" id="registro-form">
+
+        <h2 class="form-section-title">Información Personal <i class="fas fa-user"></i></h2>
+        <div class="input-grid">
+            <div class="input-wrapper">
+                <input type="text" placeholder="Nombre Completo" name="nombre_completo" required maxlength="30">
+                <i class="fas fa-user icon-inside"></i> 
+            </div>
+            <div class="input-wrapper">
+                <input type="email" placeholder="Correo" name="correo" required id="correo" maxlength="30">
+                <i class="fas fa-envelope icon-inside"></i>
+            </div>
+            <div class="input-wrapper">
+                <input type="password" placeholder="Mínimo 8 caracteres" name="contrasena" required id="contrasena" maxlength="8">
+                <button type="button" class="password-toggle-btn" onclick="togglePassword()" aria-label="Mostrar u ocultar contraseña">
+                    <i id="eye-icon" class="fas fa-eye-slash"></i>
+                </button>
+            </div>
+            <div class="input-wrapper">
+                <select name="tipo_documento_personal" required>
+                    <option value="" disabled selected>Tipo de documento</option>
+                    <option value="CC">Cédula de Ciudadanía (CC)</option>
+                    <option value="CE">Cédula de Extranjería (CE)</option>
+                    <option value="PP">Pasaporte (PP)</option>
+                </select>
+                <i class="fas fa-chevron-down icon-inside"></i>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" placeholder="Número de documento" name="numero_documento_personal" required maxlength="11" pattern="[0-9]*" inputmode="numeric">
+                <i class="fas fa-id-card icon-inside"></i>
+            </div>
+            <div class="input-wrapper">
+                <input type="tel" placeholder="Número de celular" name="numero_celular" required id="celular" maxlength="10" pattern="[0-9]*" inputmode="numeric">
+                <i class="fas fa-phone icon-inside"></i>
+            </div>
+        </div>
+
+        <h2 class="form-section-title">Información De La Empresa <i class="fas fa-building"></i></h2>
+        <div class="input-wrapper full-width">
+            <input type="text" placeholder="Nombre De La Empresa" name="nombre_empresa" required maxlength="30">
+            <i class="fas fa-building icon-inside"></i>
+        </div>
+
+        <div class="form-group">
+            <label class="group-label">Tipo De Contribuyente</label>
+            
+            <div class="radio-row-with-field">
+                <label class="radio-label">
+                    <input type="radio" name="tipo_contribuyente" value="natural" required> 
+                    Persona Natural
+                </label>
+                <div id="conditional-natural-wrapper" class="conditional-input input-wrapper hidden">
+                    <input type="text" id="numero-documento" name="numero_documento_contribuyente" placeholder="Número de documento" maxlength="11">
+                    <i class="fas fa-id-card icon-inside"></i>
+                </div>
+            </div>
+
+            <div class="radio-row-with-field">
+                <label class="radio-label">
+                    <input type="radio" name="tipo_contribuyente" value="juridica"> 
+                    Persona Jurídica
+                </label>
+                <div id="conditional-juridica-wrapper" class="conditional-input input-wrapper hidden">
+                    <!-- El name="nit" coincide con el 'play.py' -->
+                    <input type="text" id="nit" name="nit" placeholder="NIT (sin dígito de verificación)" maxlength="10">
+                    <i class="fas fa-id-card icon-inside"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="group-label">Tamaño De La Empresa</label>
+            <div class="radio-group-horizontal">
+                <label><input type="radio" name="tamano" value="pequena" required> Pequeña</label>
+                <label><input type="radio" name="tamano" value="mediana"> Mediana</label>
+                <label><input type="radio" name="tamano" value="grande"> Grande</label>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+        <label class="group-label">Sector De Operación</label>
+        <p class="info-text">Selecciona una opción de cada columna que represente el sector en el que opera tu empresa.<br>
+                             Si eres transportista o parte de las TIC's, selecciona tu sector de operacion y la opcion que te identifique </p>
+        <div class="select-row">
+
+            <select name="sector_produccion" required>
+                <option value="" disabled selected>Producción</option>
+                <option value="licencias_exploracion">Licencias de Exploración</option>
+                <option value="exploracion_terrenos">Exploración de Terrenos</option>
+                <option value="perforacion">Perforación</option>
+                <option value="voladura">Voladura</option>
+                <option value="descapote">Descapote</option>
+                <option value="remocion_materiales">Remoción de Materiales</option>
+                <option value="proveedores_insumos">Proveedores de Insumos Actividades Extractivas</option>
+                <option value="maquinaria_equipos">Maquinaria y Equipos de Operación</option>
+                <option value="servicios_ingenieria">Servicios Especializados de Ingeniería y Beneficio</option>
+                <option value="instrumentos_control">Instrumentos de Control y Automatización de Procesos</option>
+                <option value="servicios_seguridad">Prestación de Servicios de Seguridad</option>
+                <option value="transportista">Infraestructura de transporte Especializado interno y externo </option>
+                <option value="tics">Infraestructura y conectividad en tecnologia TIC'S</option>
+                <option value="ninguna">Ninguna de las anteriores</option>
+            </select>
+
+            <select name="sector_transformacion" required>
+                <option value="" disabled selected>Transformación</option>
+                <option value="extraccion">Extracción</option>
+                <option value="triturado">Triturado</option>
+                <option value="lavado">Lavado</option>
+                <option value="secado">Secado</option>
+                <option value="clasificacion">Clasificación</option>
+                <option value="centros_acopio">Centros de Acopio</option>
+                <option value="cargue_descargue">Cargue y Descargue</option>
+                <option value="puertos_vias">Puertos y Vías Férreas</option>
+                <option value="industrializacion">Industrialización</option>
+                <option value="recuperacion_valores">Recuperación de Valores y Coquizado</option>
+                <option value="manejo_desechos">Manejo de Desechos Sólidos y Líquidos</option>
+                <option value="transportista">Infraestructura de transporte Especializado interno y externo </option>
+                <option value="tics">Infraestructura y conectividad en tecnologia TIC'S</option>
+                <option value="ninguna">Ninguna de las anteriores</option>
+            </select>
+
+            <select name="sector_comercializacion" required>
+                <option value="" disabled selected>Comercialización</option>
+                <option value="mercadeo_productos">Mercadeo de Productos y Subproductos</option>
+                <option value="servicio_laboratorio">Servicio de Laboratorio y Certificaciones</option>
+                <option value="minoristas">Minoristas</option>
+                <option value="mayoristas">Mayoristas</option>
+                <option value="exportadores">Exportadores</option>
+                <option value="usos_finales">Usos Finales (Metalúrgica, Automotriz, etc.)</option>
+                <option value="transportista">Infraestructura de transporte Especializado interno y externo </option>
+                <option value="tics">Infraestructura y conectividad en tecnologia TIC'S</option>
+                <option value="ninguna">Ninguna de las anteriores</option>
+            </select>
+        </div>
+    </div>
+
+        <div class="agreement-group">
+            <input type="checkbox" id="terminos" name="terminos" required>
+            <label for="terminos">Acepto Los <a href="{{ url_for('habeasdata') }}" target="_blank">Términos y Condiciones</a></label>
+        </div>
+
+        <button type="submit" class="submit-button">FINALIZAR REGISTRO</button>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='Js/form-empresario.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cluster Platform - Alianzas</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="/static/Css/alianzas.css" rel="stylesheet" />
+    <link href="/static/Css/dashboard.css" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D572C",
+                        "accent": "#F39C12",
+                        "success": "#76B947",
+                        "danger": "#E74C3C",
+                        "background": "#F4F6F8",
+                        "card-bg": "#FFFFFF",
+                        "text-primary": "#212529",
+                        "text-secondary": "#6C757D",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow-x: hidden; overflow-y: visible !important; }
+    </style>
+</head>
+<body class="font-display bg-background text-text-primary">
+    <div class="flex h-screen w-full">
+        
+        <aside class="flex h-full w-64 flex-col bg-primary text-white">
+            <div class="flex h-full flex-col justify-between p-4">
+                <div class="flex flex-col gap-6">
+                    <div class="sidebar-brand" style="display: flex; flex-direction: column; align-items: center; padding: 20px 1rem;">
+                        <img src="/static/Img/Min.png" alt="Logo Mineconect" style="height: 40px; margin-bottom: 10px;">
+                        <span style="color: white; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">MINECONECT</span>
+                    </div>
+                    <nav class="flex flex-col gap-2">
+                        <a href="/Empresario-inicio" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">home</span>
+                            <p class="text-sm font-medium leading-normal">Inicio</p>
+                        </a>
+                        <a href="/Empresario-diagnostico" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">assessment</span>
+                            <p class="text-sm font-medium leading-normal">Mi Diagnóstico</p>
+                        </a>
+                        
+                        <a href="/Empresario-alianzas" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 text-accent transition-colors">
+                            <span class="material-symbols-outlined">groups</span>
+                            <p class="text-sm font-bold leading-normal">Alianzas</p>
+                        </a>
+                        
+                        <a href="/Empresario-convocatorias" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">campaign</span>
+                            <p class="text-sm font-medium leading-normal">Convocatorias</p>
+                        </a>
+                        <a href="/Empresario-discusiones" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">forum</span>
+                            <p class="text-sm font-medium leading-normal">Discusiones</p>
+                        </a>
+                        <a href="/Empresario-mensajes" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">chat</span>
+                            <p class="text-sm font-medium leading-normal">Mensajes</p>
+                        </a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-1 border-t border-white/20 pt-4">
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white" href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Configuración</p>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white" href="#">
+                        <span class="material-symbols-outlined">logout</span>
+                        <p class="text-sm font-medium leading-normal">Cerrar Sesión</p>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="flex flex-1 flex-col overflow-hidden">
+            <header class="flex shrink-0 items-center justify-between bg-card-bg px-6 py-3 shadow-sm">
+                <div class="flex items-center gap-8">
+                    <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] text-text-primary">Alianzas</h2>
+                </div>
+                <div class="flex flex-1 items-center justify-end gap-6">
+                    <label class="relative hidden w-full max-w-sm md:block">
+                        <span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">search</span>
+                        <input class="form-input h-10 w-full rounded-lg border-gray-300 bg-background pl-10 text-text-primary placeholder:text-text-secondary focus:border-accent focus:ring-accent" placeholder="Buscar..." type="search" />
+                    </label>
+                    <button class="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-background text-text-secondary hover:bg-gray-200">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-danger"></span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKMGmBMv5oIuRLMBvf_CTOm7GoPPj5ATsWRxEtJmUCVZ2_KdX0VebF3pE4v-4Xt7yyQuPgPhES0RRijovTYnK_1OnI9OJN6xr-ta7-KicNQiY9ch9yFc8Kx_WBvtfwSN9AGWfoWkEt0ozY7CD_IxpmIYRbGT-BG2Zp60BhbAsc1YLdHdEC7VpO7ooGHU0uCCRrLgbRVnQNBGrVZdaXmlWvv70JUVOh0NYqKjUvyqZa93Uh-LO8UYzW_6m0MqsLeRMQixcYIRmszF4");'></div>
+                        <div class="hidden text-right lg:block">
+                            <p class="text-sm font-semibold text-text-primary">Minera S.A.S</p>
+                            <p class="text-xs text-text-secondary">Empresario</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6 bg-background">
+                <div class="mx-auto max-w-none">
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-text-primary">Directorio de Aliados Estratégicos</h3>
+                            <p class="text-sm text-text-secondary mt-1">Encuentra socios en Boyacá para fortalecer tu operación.</p>
+                        </div>
+                        <div class="flex gap-3 w-full md:w-auto">
+                            <button onclick="toggleModal('modal-publicar')" class="bg-accent hover:bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-colors shadow-sm">
+                                <span class="material-symbols-outlined text-lg">add_business</span>
+                                Publicar mi Perfil
+                            </button>
+                            
+                            <select class="form-select rounded-lg border-gray-300 text-sm w-full md:w-40 focus:border-accent focus:ring-accent">
+                                <option>Filtrar por Sector</option>
+                                <option>Minería</option>
+                                <option>Logística</option>
+                                <option>Tecnología</option>
+                                <option>Ambiental</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <div class="group rounded-lg bg-card-bg p-6 shadow-sm border border-transparent hover:border-accent transition-all hover:shadow-md flex flex-col h-full">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="h-14 w-14 rounded-full bg-blue-100 flex items-center justify-center text-xl font-bold text-blue-600 shrink-0">TS</div>
+                                <div>
+                                    <h4 class="font-bold text-text-primary text-lg leading-tight">TransSolutions</h4>
+                                    <p class="text-xs text-text-secondary uppercase tracking-wide mt-1">Logística • Duitama</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-6 leading-relaxed flex-grow">Especialistas en transporte de carga pesada (carbón y coque) desde Boyacá hacia puertos del norte.</p>
+                            <button onclick="verPerfil('TransSolutions', 'Logística', 'Duitama', 'Transporte de carga masiva, Alquiler de volquetas doble troque.', 'ISO 9001, RUC Vigente', '310 123 4567')" class="w-full rounded-lg bg-background text-text-primary py-2.5 text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">Ver Perfil</button>
+                        </div>
+
+                        <div class="group rounded-lg bg-card-bg p-6 shadow-sm border border-transparent hover:border-accent transition-all hover:shadow-md flex flex-col h-full">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="h-14 w-14 rounded-full bg-orange-100 flex items-center justify-center text-xl font-bold text-orange-600 shrink-0">IM</div>
+                                <div>
+                                    <h4 class="font-bold text-text-primary text-lg leading-tight">Ingeniería Minera</h4>
+                                    <p class="text-xs text-text-secondary uppercase tracking-wide mt-1">Consultoría • Sogamoso</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-6 leading-relaxed flex-grow">Asesoría integral en seguridad minera, trámites ante la ANM y certificaciones ambientales.</p>
+                            <button onclick="verPerfil('Ingeniería Minera', 'Consultoría', 'Sogamoso', 'Planes de manejo ambiental, Diseños de explotación, Topografía.', 'Licencia SST, Registro ANM', '320 987 6543')" class="w-full rounded-lg bg-background text-text-primary py-2.5 text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">Ver Perfil</button>
+                        </div>
+
+                        <div class="group rounded-lg bg-card-bg p-6 shadow-sm border border-transparent hover:border-accent transition-all hover:shadow-md flex flex-col h-full">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="h-14 w-14 rounded-full bg-purple-100 flex items-center justify-center text-xl font-bold text-purple-600 shrink-0">DT</div>
+                                <div>
+                                    <h4 class="font-bold text-text-primary text-lg leading-tight">DataTech Boyacá</h4>
+                                    <p class="text-xs text-text-secondary uppercase tracking-wide mt-1">Software • Tunja</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-6 leading-relaxed flex-grow">Desarrollo de software a medida para control de inventarios en patio y pesaje en básculas.</p>
+                            <button onclick="verPerfil('DataTech Boyacá', 'Tecnología', 'Tunja', 'Software de pesaje, Apps de control de personal, Dashboards BI.', 'Partner Microsoft', '300 555 1234')" class="w-full rounded-lg bg-background text-text-primary py-2.5 text-sm font-bold group-hover:bg-accent group-hover:text-white transition-colors">Ver Perfil</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="modal-ver-perfil" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            <div class="modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg"><span id="modal-initials">TS</span></div>
+                        <div><p class="text-xl font-bold text-primary" id="modal-title">Nombre</p><p class="text-xs text-text-secondary uppercase" id="modal-sector">Sector</p></div>
+                    </div>
+                    <div class="modal-close cursor-pointer z-50" onclick="toggleModal('modal-ver-perfil')"><span class="material-symbols-outlined text-text-secondary">close</span></div>
+                </div>
+                <div class="py-4 space-y-4">
+                    <div><p class="text-xs font-bold text-accent uppercase mb-1">Ubicación</p><p class="text-sm text-text-primary flex items-center gap-2"><span class="material-symbols-outlined text-sm text-gray-400">location_on</span><span id="modal-location">...</span></p></div>
+                    <div><p class="text-xs font-bold text-accent uppercase mb-1">Servicios Principales</p><p class="text-sm text-text-secondary" id="modal-services">...</p></div>
+                    <div><p class="text-xs font-bold text-accent uppercase mb-1">Certificaciones</p><div class="flex flex-wrap gap-2 mt-1" id="modal-certs"></div></div>
+                </div>
+                <div class="flex justify-end pt-4 border-t border-gray-200 gap-2">
+                    <button onclick="toggleModal('modal-ver-perfil')" class="px-4 py-2 bg-transparent p-3 rounded-lg text-text-secondary hover:bg-gray-100 hover:text-text-primary text-sm font-medium">Cerrar</button>
+                    <a href="/Empresario-mensajes" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 text-sm font-bold flex items-center gap-2"><span class="material-symbols-outlined text-sm">chat</span> Contactar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-publicar" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-lg mx-auto rounded-lg shadow-xl z-50 overflow-y-auto max-h-[90vh]">
+            <div class="modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <p class="text-xl font-bold text-primary">Publicar mi Oferta</p>
+                    <div class="modal-close cursor-pointer z-50" onclick="toggleModal('modal-publicar')"><span class="material-symbols-outlined text-text-secondary">close</span></div>
+                </div>
+                <div class="py-4 space-y-4">
+                    <p class="text-sm text-text-secondary">Complete la información para aparecer en el directorio de aliados.</p>
+                    <div><label class="block text-sm font-bold text-text-primary mb-1">Tipo de Oferta</label><select class="w-full rounded-lg border-gray-300 text-sm focus:ring-accent focus:border-accent"><option>Venta de Mineral</option><option>Alquiler de Maquinaria</option></select></div>
+                    <div><label class="block text-sm font-bold text-text-primary mb-1">Descripción Corta</label><textarea class="w-full rounded-lg border-gray-300 text-sm focus:ring-accent focus:border-accent" rows="3"></textarea></div>
+                    <div><label class="block text-sm font-bold text-text-primary mb-1">Ubicación</label><input type="text" class="w-full rounded-lg border-gray-300 text-sm focus:ring-accent focus:border-accent"></div>
+                </div>
+                <div class="flex justify-end pt-4 border-t border-gray-200 gap-2">
+                    <button onclick="toggleModal('modal-publicar')" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-gray-100 font-medium text-sm">Cancelar</button>
+                    <button onclick="toggleModal('modal-publicar'); alert('¡Perfil publicado exitosamente!');" class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 font-bold text-sm shadow-md">Publicar Ahora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+            document.body.classList.toggle('modal-active');
+        }
+        function verPerfil(nombre, sector, ubicacion, servicios, certs, telefono) {
+            document.getElementById('modal-title').innerText = nombre;
+            document.getElementById('modal-sector').innerText = sector;
+            document.getElementById('modal-location').innerText = ubicacion;
+            document.getElementById('modal-services').innerText = servicios;
+            document.getElementById('modal-initials').innerText = nombre.substring(0, 2).toUpperCase();
+            const certContainer = document.getElementById('modal-certs');
+            certContainer.innerHTML = '';
+            certs.split(',').forEach(c => {
+                certContainer.innerHTML += `<span class="bg-green-100 text-primary text-xs font-bold px-2 py-1 rounded border border-green-200">${c.trim()}</span>`;
+            });
+            toggleModal('modal-ver-perfil');
+        }
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(event) {
+                const modal = event.target.closest('.modal');
+                toggleModal(modal.id);
+            });
+        });
+    </script>
+</body>
+</html>

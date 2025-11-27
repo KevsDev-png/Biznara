@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='Img/favicon.ico') }}">
+    <title>Ley 1581 de 2012</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #417e34;
+            color: #000;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1{
+            background-color: white;
+            color: #000;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 2.0em;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            background-color: white;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.2em;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #417e34;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #417e34;
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #417e34;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+
+        .card p, .card li {
+            color: #000;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 5px solid #417e34;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #417e34;
+            position: relative;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -15px;
+            top: 15px;
+            background-color: #417e34;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-info h2 {
+            color: #417e34;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: white;
+            color: #000;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+                padding: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+               <h1>Derecho Fundamental a la Protección de Datos Personales</h1>
+               <img src="{{ url_for('static', filename='Img/ley.png') }}" alt="ley">
+        </header>
+
+        <div class="card-grid">
+            <div class="card">
+                <h2>¿Qué es el Habeas Data?</h2>
+                <p>El Habeas Data es un derecho fundamental que permite a toda persona conocer, actualizar y rectificar las informaciones que se hayan recogido sobre ella en archivos y bancos de datos de naturaleza pública o privada.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Origen:</strong> Proviene del latín "que tengas los datos", garantizando el control sobre la información personal.</p>
+                </div>
+
+                <h3>Características principales:</h3>
+                <ul>
+                    <li>Derecho constitucional fundamental</li>
+                    <li>Protege la intimidad y privacidad</li>
+                    <li>Aplicable a entidades públicas y privadas</li>
+                    <li>Mecanismo de protección ciudadana</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Derechos que Protege</h2>
+                <h3>Derecho de Acceso</h3>
+                <p>Conocer qué información personal está siendo procesada y almacenada.</p>
+
+                <h3>Derecho de Rectificación</h3>
+                <p>Corregir datos inexactos, incompletos o desactualizados.</p>
+
+                <h3>Derecho de Actualización</h3>
+                <p>Mantener la información personal al día y vigente.</p>
+
+                <h3>Derecho de Supresión</h3>
+                <p>Solicitar la eliminación de datos cuando no sean necesarios o sean tratados ilegalmente.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Importante:</strong> Estos derechos son irrenunciables y pueden ejercerse gratuitamente.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>¿Cuándo Aplicar?</h2>
+                <p>El Habeas Data puede ejercerse en diversas situaciones:</p>
+
+                <ul>
+                    <li>Cuando apareces en centrales de riesgo sin justificación</li>
+                    <li>Si tu información crediticia contiene errores</li>
+                    <li>Cuando datos médicos son mal manejados</li>
+                    <li>Si instituciones educativas manejan mal tu información</li>
+                    <li>Cuando empresas usan tus datos sin autorización</li>
+                    <li>Si hay información falsa en bases de datos públicas</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Recuerda:</strong> No necesitas abogado para ejercer este derecho, puedes hacerlo directamente.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Cómo Ejercer el Derecho</h2>
+                <div class="steps">
+                    <div class="step">
+                        <h3>Identificar la Entidad</h3>
+                        <p>Determina qué organización maneja tus datos personales (banco, empresa, entidad pública, etc.).</p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Presentar Solicitud</h3>
+                        <p>Envía una petición escrita especificando qué información quieres conocer, rectificar o actualizar.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Adjuntar Documentos</h3>
+                        <p>Incluye copia de tu cédula de ciudadanía y cualquier documento que respalde tu solicitud.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Esperar Respuesta</h3>
+                        <p>La entidad tiene máximo 15 días hábiles para responder a tu solicitud.</p>
+                    </div>
+
+                    <div class="step">
+                        <h3>Acción de Tutela</h3>
+                        <p>Si no hay respuesta o es negativa sin justificación, puedes interponer acción de tutela.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Marco Legal en Colombia</h2>
+                <h3>Constitución Política</h3>
+                <p>Artículo 15: Todas las personas tienen derecho a su intimidad personal y familiar y a su buen nombre.</p>
+
+                <h3>Ley 1581 de 2012</h3>
+                <p>Ley de Protección de Datos Personales que regula el tratamiento de datos personales.</p>
+
+                <h3>Decreto 1377 de 2013</h3>
+                <p>Reglamenta la Ley 1581 y establece los procedimientos para el ejercicio del Habeas Data.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Autoridad de Control:</strong> La Superintendencia de Industria y Comercio (SIC) vigila el cumplimiento de estas normas.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Modelo de Solicitud</h2>
+                <div class="highlight-box">
+                    <p><strong>Señores:</strong> [Nombre de la entidad]</p>
+                    <p><strong>Asunto:</strong> Solicitud de Habeas Data</p>
+                    <br>
+                    <p>Yo, [Nombre completo], identificado(a) con cédula de ciudadanía No. [Número], en ejercicio del derecho de Habeas Data consagrado en el artículo 15 de la Constitución Política, solicito:</p>
+                    <br>
+                    <p>1. [Especificar qué información desea conocer, rectificar o actualizar]</p>
+                    <p>2. [Detallar los motivos de la solicitud]</p>
+                    <br>
+                    <p>Adjunto copia de mi documento de identidad.</p>
+                    <p>Atentamente,</p>
+                    <p>[Firma y fecha]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h2>¿Necesitas Ayuda?</h2>
+            <p>Si tienes dudas sobre cómo ejercer tu derecho al Habeas Data, puedes contactar:</p>
+            <p><strong>Superintendencia de Industria y Comercio (SIC)</strong></p>
+            <p>Línea gratuita: 01 8000 910 165</p>
+            <p>Página web: www.sic.gov.co</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026- Mineconect - Información sobre Habeas Data<br>
+                Derecho fundamental de todos los colombianos.</p>
+        </footer>
+    </div>
+</body>
+</html>

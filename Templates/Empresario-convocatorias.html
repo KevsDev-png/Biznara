@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cluster Platform - Convocatorias</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="/static/Css/convocatorias.css" rel="stylesheet" />
+    <link href="/static/Css/dashboard.css" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2D572C",
+                        "accent": "#F39C12",
+                        "success": "#76B947",
+                        "danger": "#E74C3C",
+                        "background": "#F4F6F8",
+                        "card-bg": "#FFFFFF",
+                        "text-primary": "#212529",
+                        "text-secondary": "#6C757D",
+                    },
+                    fontFamily: {
+                        "display": ["Montserrat", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow-x: hidden; overflow-y: visible !important; }
+    </style>
+</head>
+<body class="font-display bg-background text-text-primary">
+    <div class="flex h-screen w-full">
+        
+        <aside class="flex h-full w-64 flex-col bg-primary text-white">
+            <div class="flex h-full flex-col justify-between p-4">
+                <div class="flex flex-col gap-6">
+                    <div class="sidebar-brand" style="display: flex; flex-direction: column; align-items: center; padding: 20px 1rem;">
+                        <img src="/static/Img/Min.png" alt="Logo Mineconect" style="height: 40px; margin-bottom: 10px;">
+                        <span style="color: white; font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;">MINECONECT</span>
+                    </div>
+                    <nav class="flex flex-col gap-2">
+                        <a href="/Empresario-inicio" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">home</span>
+                            <p class="text-sm font-medium leading-normal">Inicio</p>
+                        </a>
+                        <a href="/Empresario-diagnostico" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">assessment</span>
+                            <p class="text-sm font-medium leading-normal">Mi Diagnóstico</p>
+                        </a>
+                        <a href="/Empresario-alianzas" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">groups</span>
+                            <p class="text-sm font-medium leading-normal">Alianzas</p>
+                        </a>
+                        
+                        <a href="/Empresario-convocatorias" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 text-accent transition-colors">
+                            <span class="material-symbols-outlined">campaign</span>
+                            <p class="text-sm font-bold leading-normal">Convocatorias</p>
+                        </a>
+                        
+                        <a href="/Empresario-discusiones" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">forum</span>
+                            <p class="text-sm font-medium leading-normal">Discusiones</p>
+                        </a>
+                        <a href="/Empresario-mensajes" class="nav-btn flex items-center gap-3 rounded-lg px-4 py-2 hover:bg-white/10 text-white/80 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">chat</span>
+                            <p class="text-sm font-medium leading-normal">Mensajes</p>
+                        </a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-1 border-t border-white/20 pt-4">
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white" href="#">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p class="text-sm font-medium leading-normal">Configuración</p>
+                    </a>
+                    <a class="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-white/10 text-white/80 hover:text-white" href="#">
+                        <span class="material-symbols-outlined">logout</span>
+                        <p class="text-sm font-medium leading-normal">Cerrar Sesión</p>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="flex flex-1 flex-col overflow-hidden">
+            <header class="flex shrink-0 items-center justify-between bg-card-bg px-6 py-3 shadow-sm">
+                <div class="flex items-center gap-8">
+                    <h2 class="text-lg font-bold leading-tight tracking-[-0.015em] text-text-primary">Convocatorias</h2>
+                </div>
+                <div class="flex flex-1 items-center justify-end gap-6">
+                    <label class="relative hidden w-full max-w-sm md:block">
+                        <span class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">search</span>
+                        <input class="form-input h-10 w-full rounded-lg border-gray-300 bg-background pl-10 text-text-primary placeholder:text-text-secondary focus:border-accent focus:ring-accent" placeholder="Buscar convocatoria..." type="search" />
+                    </label>
+                    <button class="relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-background text-text-secondary hover:bg-gray-200">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span class="absolute right-2 top-2 h-2 w-2 rounded-full bg-danger"></span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKMGmBMv5oIuRLMBvf_CTOm7GoPPj5ATsWRxEtJmUCVZ2_KdX0VebF3pE4v-4Xt7yyQuPgPhES0RRijovTYnK_1OnI9OJN6xr-ta7-KicNQiY9ch9yFc8Kx_WBvtfwSN9AGWfoWkEt0ozY7CD_IxpmIYRbGT-BG2Zp60BhbAsc1YLdHdEC7VpO7ooGHU0uCCRrLgbRVnQNBGrVZdaXmlWvv70JUVOh0NYqKjUvyqZa93Uh-LO8UYzW_6m0MqsLeRMQixcYIRmszF4");'></div>
+                        <div class="hidden text-right lg:block">
+                            <p class="text-sm font-semibold text-text-primary">Minera S.A.S</p>
+                            <p class="text-xs text-text-secondary">Empresario</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6 bg-background">
+                <div class="mx-auto max-w-none space-y-6">
+                    <div class="flex justify-between items-end">
+                        <h3 class="text-xl font-bold text-text-primary">Convocatorias Vigentes</h3>
+                        <div class="text-sm text-text-secondary">Mostrando oportunidades para Boyacá</div>
+                    </div>
+                    
+                    <div class="rounded-xl bg-gradient-to-r from-primary to-[#3d6e3c] p-8 text-white shadow-lg relative overflow-hidden">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl"></div>
+                        <div class="relative z-10">
+                            <span class="inline-block px-3 py-1 bg-accent text-white text-xs font-bold rounded-full mb-4">Destacado</span>
+                            <h3 class="text-2xl font-bold mb-2">Premio a la Innovación Minera 2024</h3>
+                            <p class="text-blue-100 mb-6 max-w-2xl">Participa por fondos de inversión de hasta $50.000.000 COP para proyectos que implementen energías renovables en procesos de extracción en la región.</p>
+                            <div class="flex flex-wrap gap-6 mb-6 text-sm font-medium">
+                                <span class="flex items-center gap-2"><span class="material-symbols-outlined">calendar_month</span> Cierre: 30 Noviembre</span>
+                                <span class="flex items-center gap-2"><span class="material-symbols-outlined">payments</span> Financiación 100%</span>
+                            </div>
+                            <button onclick="abrirFormularioAplicacion('Premio a la Innovación Minera 2024')" class="bg-white text-primary px-6 py-2.5 rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-md">Aplicar Ahora</button>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-4">
+                        <div class="rounded-lg bg-card-bg p-5 shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-accent/50 transition-colors">
+                            <div>
+                                <h5 class="font-bold text-text-primary text-lg">Fondo Emprender - Línea Minera</h5>
+                                <p class="text-sm text-text-secondary">Capital semilla para modernización de maquinaria y seguridad industrial.</p>
+                            </div>
+                            <div class="text-right flex flex-col items-end gap-2">
+                                <span class="text-xs font-bold text-danger bg-red-50 px-2 py-1 rounded">Vence en 3 días</span>
+                                <button onclick="verRequisitos('Fondo Emprender - Línea Minera', 'Financiación condonable para compra de maquinaria nueva.', ['RUT Actualizado', 'Certificado Cámara de Comercio (Tunja/Sogamoso)', 'Plan de Negocio SENA', 'Cotizaciones de equipos'], '30 de Octubre, 2025')" class="text-sm text-accent font-bold hover:underline cursor-pointer bg-transparent border-none p-0">
+                                    Ver requisitos
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="rounded-lg bg-card-bg p-5 shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-accent/50 transition-colors">
+                            <div>
+                                <h5 class="font-bold text-text-primary text-lg">Certificación ISO 14001</h5>
+                                <p class="text-sm text-text-secondary">Subsidio del 50% en consultoría para empresas del Cluster de Carbón de Boyacá.</p>
+                            </div>
+                            <div class="text-right flex flex-col items-end gap-2">
+                                <span class="text-xs font-bold text-success bg-green-50 px-2 py-1 rounded">Abierta todo el año</span>
+                                <button onclick="verRequisitos('Certificación ISO 14001', 'Apoyo económico para implementación de Sistema de Gestión Ambiental.', ['Pertenecer al Cluster', 'Estar al día en parafiscales', 'Mínimo 5 empleados directos'], 'Permanente')" class="text-sm text-accent font-bold hover:underline cursor-pointer bg-transparent border-none p-0">
+                                    Ver requisitos
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="rounded-lg bg-card-bg p-5 shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-accent/50 transition-colors">
+                            <div>
+                                <h5 class="font-bold text-text-primary text-lg">Rueda de Negocios - ExpoMinas</h5>
+                                <p class="text-sm text-text-secondary">Inscripción para stand comercial en la feria minera de Paipa.</p>
+                            </div>
+                            <div class="text-right flex flex-col items-end gap-2">
+                                <span class="text-xs font-bold text-text-secondary bg-gray-100 px-2 py-1 rounded">Cupos Limitados</span>
+                                <button onclick="abrirFormularioAplicacion('Stand ExpoMinas Paipa')" class="text-sm text-accent font-bold hover:underline cursor-pointer bg-transparent border-none p-0">
+                                    Inscribirse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="modal-requisitos" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+            <div class="modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <p class="text-xl font-bold text-primary" id="req-title">Título</p>
+                    <div class="cursor-pointer z-50" onclick="toggleModal('modal-requisitos')"><span class="material-symbols-outlined text-text-secondary">close</span></div>
+                </div>
+                <div class="py-4">
+                    <p class="text-sm text-text-secondary mb-4" id="req-desc">...</p>
+                    <h4 class="font-bold text-text-primary text-sm mb-2">Documentación Requerida:</h4>
+                    <ul class="list-disc list-inside text-sm text-text-secondary space-y-1 mb-4" id="req-list"></ul>
+                    <div class="bg-orange-50 p-3 rounded-lg border border-orange-100">
+                        <p class="text-xs text-accent font-bold">Fecha Límite:</p>
+                        <p class="text-sm text-text-primary" id="req-date">Fecha</p>
+                    </div>
+                </div>
+                <div class="flex justify-end pt-4 border-t border-gray-200">
+                    <button onclick="toggleModal('modal-requisitos')" class="px-4 py-2 bg-transparent p-3 rounded-lg text-text-secondary hover:bg-gray-100 text-sm font-medium mr-2">Cerrar</button>
+                    <button onclick="toggleModal('modal-requisitos'); abrirFormularioAplicacion(document.getElementById('req-title').innerText)" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 text-sm font-bold">Ir a Aplicar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-aplicacion" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-lg mx-auto rounded-lg shadow-xl z-50 overflow-y-auto max-h-[90vh]">
+            <div class="modal-content py-4 text-left px-6">
+                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                    <p class="text-xl font-bold text-primary">Postulación de Proyecto</p>
+                    <div class="cursor-pointer z-50" onclick="toggleModal('modal-aplicacion')"><span class="material-symbols-outlined text-text-secondary">close</span></div>
+                </div>
+                <div class="py-4 space-y-4">
+                    <div class="bg-blue-50 p-3 rounded text-sm text-blue-800 mb-2">Estás aplicando a: <span class="font-bold" id="app-convocatoria-name">...</span></div>
+                    <div><label class="block text-sm font-bold text-text-primary mb-1">Nombre del Proyecto</label><input type="text" class="w-full rounded-lg border-gray-300 text-sm focus:ring-accent focus:border-accent" placeholder="Ej: Modernización Planta Lavado"></div>
+                    <div><label class="block text-sm font-bold text-text-primary mb-1">Descripción Breve</label><textarea class="w-full rounded-lg border-gray-300 text-sm focus:ring-accent focus:border-accent" rows="3"></textarea></div>
+                    <div><label class="block text-sm font-bold text-text-primary mb-1">Adjuntar Propuesta (PDF)</label><input type="file" class="block w-full text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"/></div>
+                </div>
+                <div class="flex justify-end pt-4 border-t border-gray-200 gap-2">
+                    <button onclick="toggleModal('modal-aplicacion')" class="px-4 py-2 rounded-lg text-text-secondary hover:bg-gray-100 font-medium text-sm">Cancelar</button>
+                    <button onclick="enviarAplicacion()" class="px-4 py-2 bg-accent text-white rounded-lg hover:bg-yellow-600 font-bold text-sm shadow-md flex items-center gap-2"><span class="material-symbols-outlined text-sm">send</span> Enviar Postulación</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+            document.body.classList.toggle('modal-active');
+        }
+        function verRequisitos(titulo, desc, listaReq, fecha) {
+            document.getElementById('req-title').innerText = titulo;
+            document.getElementById('req-desc').innerText = desc;
+            document.getElementById('req-date').innerText = fecha;
+            const listaElement = document.getElementById('req-list');
+            listaElement.innerHTML = '';
+            listaReq.forEach(item => { const li = document.createElement('li'); li.innerText = item; listaElement.appendChild(li); });
+            toggleModal('modal-requisitos');
+        }
+        function abrirFormularioAplicacion(nombreConvocatoria) {
+            document.getElementById('app-convocatoria-name').innerText = nombreConvocatoria;
+            toggleModal('modal-aplicacion');
+        }
+        function enviarAplicacion() {
+            toggleModal('modal-aplicacion');
+            alert("¡Postulación enviada con éxito! Recibirás un correo de confirmación.");
+        }
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(event) {
+                const modal = event.target.closest('.modal');
+                toggleModal(modal.id);
+            });
+        });
+    </script>
+</body>
+</html>
